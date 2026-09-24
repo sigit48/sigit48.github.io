@@ -109,7 +109,7 @@ nav b{margin:0 12px 0 0}nav button{margin:0 0 0 auto}
     <div class="ctl" id="ctl"></div>
     <div class="cv"><canvas id="cv" role="img" aria-label="Grafik proyek"></canvas></div>
     <div class="ins" id="ins" aria-live="polite"></div>
-    <p class="note">Data di halaman ini adalah data contoh. <a id="pl" href="#" target="_blank" rel="noopener">Lihat analisis lengkap di GitHub</a></p>
+    <p class="note" id="nt"></p><p class="note"><a id="pl" href="#" target="_blank" rel="noopener">Lihat analisis lengkap di GitHub</a></p>
   </div>
 </section>
 
@@ -131,10 +131,10 @@ nav b{margin:0 12px 0 0}nav button{margin:0 0 0 auto}
   <div class="links">
     <a href="https://www.linkedin.com/in/sigit-dwiantoro-392872227" target="_blank" rel="noopener">LinkedIn</a>
     <a href="https://github.com/sigit48" target="_blank" rel="noopener">GitHub</a>
-    <a href="cv.pdf" download>Unduh CV</a>
+    <a href="CV_Sigit_Dwiantoro_Data_Analyst.pdf" download>Unduh CV</a>
   </div>
 </section>
-<footer>Sigit Dwiantoro</footer>
+<footer>Dibuat dengan HTML, CSS, JavaScript, dan Chart.js. Hosting di GitHub Pages.</footer>
 </main>
 
 <dialog id="pal"><input id="q" placeholder="Ketik: python, risk, kontak..." aria-label="Cari"><ul id="res"></ul></dialog>
@@ -154,16 +154,17 @@ const sum=a=>a.reduce((x,y)=>x+y,0), avg=a=>a.length?sum(a)/a.length:0;
 
 /* ====== DATA CONTOH: ganti dengan data asli dari proyek Anda ====== */
 const P=[
-{id:'coffee',tools:['Python'],title:'Coffee Shop Revenue Optimization',
- desc:'Analisis penjualan untuk menentukan produk andalan, jam ramai, dan peluang bundling promo.',
+{id:'coffee',real:true,tools:['Python'],title:'Coffee Shop Revenue Optimization',
+ desc:'3.636 transaksi (Mar 2024 - Mar 2025). Bandingkan produk andalan di pagi, siang, dan sore untuk menentukan promo dan bundling.',
  repo:'https://github.com/sigit48/coffee-shop-sales-analysis',
  run(){
-  const n=['Latte','Cappuccino','Americano','Croissant','Espresso'],
-  d={Pagi:[5.2,3.1,4.0,2.4,1.9],Siang:[3.8,2.9,2.2,1.1,1.5],Sore:[2.1,1.8,1.0,0.9,1.2]};
-  ctl(`<label>Waktu <select id="f1">${Object.keys(d).map(k=>`<option>${k}</option>`).join('')}</select></label>`);
-  const up=()=>{const k=$('#f1').value,v=d[k],m=v.indexOf(Math.max(...v));
-   draw('bar',n,[{label:'Pendapatan (juta Rp)',data:v,backgroundColor:v.map((_,i)=>i==m?A:D),borderRadius:6}]);
-   say(`${n[m]} menyumbang ${Math.round(v[m]/sum(v)*100)}% pendapatan waktu ${k.toLowerCase()}. Cocok dijadikan produk utama paket bundling.`)};
+  const n=['Latte','Americano with Milk','Cappuccino','Americano','Hot Chocolate','Cocoa','Cortado','Espresso'],
+  d={Pagi:[8403,10200,4486,5820,1784,2098,3665,923],Siang:[9691,7557,6111,6309,2979,2762,2406,1239],Sore:[9772,7512,7437,2933,5409,3818,1464,652]};
+  d.Semua=n.map((_,i)=>d.Pagi[i]+d.Siang[i]+d.Sore[i]);
+  ctl(`<label>Waktu <select id="f1">${['Semua','Pagi','Siang','Sore'].map(k=>`<option>${k}</option>`).join('')}</select></label><span>Pagi &lt; 12.00, Siang 12.00-16.59, Sore &ge; 17.00</span>`);
+  const up=()=>{const k=$('#f1').value,v=d[k],t=sum(v),m=v.indexOf(Math.max(...v)),ch=v[4]+v[5];
+   draw('bar',n,[{label:'Pendapatan',data:v,backgroundColor:v.map((_,i)=>i==m?A:(i==4||i==5?'rgba(255,180,84,.35)':D)),borderRadius:6}]);
+   say(`${n[m]} menyumbang ${Math.round(v[m]/t*100)}% pendapatan (${k.toLowerCase()}). Minuman cokelat (Hot Chocolate + Cocoa, ditandai oranye muda) menyumbang ${Math.round(ch/t*100)}%. Coba bandingkan Pagi dengan Sore.`)};
   $('#f1').onchange=up;up();}},
 
 {id:'credit',tools:['SQL','Power BI'],title:'Manufacturing Credit Risk & Cashflow Analytics',
@@ -212,7 +213,7 @@ function tabs(){
 }
 function mount(id){
   cur=id;const p=P.find(x=>x.id==id);
-  $('#pt').textContent=p.title;$('#pd').textContent=p.desc;$('#pl').href=p.repo;
+  $('#pt').textContent=p.title;$('#pd').textContent=p.desc;$('#pl').href=p.repo;$('#nt').textContent=p.real?'Data asli dari proyek ini.':'Data contoh, belum diganti dengan data asli proyek.';
   document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.id==id));
   p.run();
 }
