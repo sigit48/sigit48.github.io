@@ -1,1 +1,253 @@
-hello
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sigit Dwiantoro | Business-Oriented Data Analyst</title>
+<meta name="description" content="Portofolio interaktif data analyst: Python, SQL, Power BI, risk & financial analytics.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>📊</text></svg>">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#060b12;--panel:#0d1622;--line:#1a2a3d;--tx:#d8e6f3;--mu:#7b93ab;--cy:#37e6d0;--am:#ffb454;
+--f:'Sora',system-ui,sans-serif;--m:'JetBrains Mono',ui-monospace,monospace}
+*{box-sizing:border-box;margin:0}
+html{scroll-behavior:smooth;scroll-padding-top:16px}
+body{background:radial-gradient(900px 500px at 85% -10%,#0f2a3a 0,transparent 60%),var(--bg);color:var(--tx);font:16px/1.6 var(--f);display:grid;grid-template-columns:210px 1fr;min-height:100vh}
+a{color:var(--cy)}
+:focus-visible{outline:2px solid var(--cy);outline-offset:2px}
+nav{position:sticky;top:0;height:100vh;padding:28px 20px;border-right:1px solid var(--line);display:flex;flex-direction:column;gap:6px}
+nav b{font-size:18px;margin-bottom:18px;display:block}
+nav b i{font-style:normal;color:var(--cy)}
+nav a{color:var(--mu);text-decoration:none;padding:8px 12px;border-radius:8px;font-size:14px}
+nav a:hover{background:var(--panel);color:var(--tx)}
+nav button{margin-top:auto}
+button,select{font:inherit;font-size:14px;color:var(--tx);background:var(--panel);border:1px solid var(--line);border-radius:8px;padding:8px 12px;cursor:pointer}
+button:hover{border-color:var(--cy)}
+kbd{font:12px var(--m);color:var(--mu);border:1px solid var(--line);border-radius:4px;padding:0 5px}
+main{padding:40px clamp(18px,4vw,56px);max-width:1100px;width:100%}
+section{margin-bottom:56px}
+h1{font-size:clamp(30px,5vw,48px);line-height:1.1;letter-spacing:-.02em;max-width:18ch}
+h2{font-size:22px;margin-bottom:16px}
+.lead{color:var(--mu);max-width:60ch;margin:16px 0 28px}
+.status{display:inline-flex;gap:8px;align-items:center;font:14px var(--m);color:var(--cy);margin-bottom:18px}
+.status:before{content:"";width:8px;height:8px;border-radius:50%;background:var(--cy);box-shadow:0 0 10px var(--cy);animation:p 2s infinite}
+@keyframes p{50%{opacity:.35}}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px}
+.kpi{background:var(--panel);border:1px solid var(--line);border-radius:12px;padding:16px}
+.kpi span{display:block;font:500 30px var(--m);color:var(--cy)}
+.kpi small{color:var(--mu);font-size:13px}
+.bar{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:14px;align-items:center}
+.chip[aria-pressed=true],.tab[aria-selected=true]{background:var(--cy);color:#04141a;border-color:var(--cy);font-weight:600}
+.box{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:22px}
+.box h3{font-size:19px}
+.box p.d{color:var(--mu);margin:6px 0 14px;max-width:70ch}
+.ctl{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-bottom:12px;font-size:14px;color:var(--mu)}
+.ctl b{color:var(--am);font-family:var(--m)}
+.ctl input[type=range]{accent-color:var(--cy);vertical-align:middle}
+.cv{position:relative;height:300px}
+.ins{margin-top:14px;padding:12px 14px;border-left:3px solid var(--am);background:#ffb45412;border-radius:0 8px 8px 0;font-size:15px}
+.note{color:var(--mu);font-size:13px;margin-top:10px}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.list{display:grid;gap:10px;align-content:start;color:var(--mu);font-size:15px}
+.list li{list-style:none;padding-left:14px;border-left:2px solid var(--line)}
+.list li b{color:var(--tx)}
+.links{display:flex;gap:12px;flex-wrap:wrap}
+.links a{border:1px solid var(--line);border-radius:10px;padding:10px 18px;text-decoration:none;background:var(--panel)}
+.links a:hover{border-color:var(--cy)}
+dialog{margin:12vh auto 0;width:min(520px,92vw);background:var(--panel);color:var(--tx);border:1px solid var(--cy);border-radius:14px;padding:0}
+dialog::backdrop{background:#000a}
+dialog input{width:100%;background:none;border:0;border-bottom:1px solid var(--line);color:var(--tx);font:inherit;padding:16px 18px}
+dialog input:focus{outline:0}
+dialog ul{list-style:none;padding:8px;max-height:280px;overflow:auto}
+dialog li{padding:10px 12px;border-radius:8px;cursor:pointer;font-size:15px}
+dialog li:first-child,dialog li:hover{background:#37e6d015}
+footer{color:var(--mu);font-size:13px;padding-bottom:32px}
+@media(max-width:820px){
+body{grid-template-columns:1fr}
+nav{position:static;height:auto;flex-direction:row;flex-wrap:wrap;padding:14px 16px;border:0;border-bottom:1px solid var(--line);align-items:center;gap:2px}
+nav b{margin:0 12px 0 0}nav button{margin:0 0 0 auto}
+.two{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav aria-label="Navigasi utama">
+  <b>sigit<i>.</i>dev</b>
+  <a href="#ringkasan">Ringkasan</a>
+  <a href="#proyek">Proyek</a>
+  <a href="#skill">Skill</a>
+  <a href="#kontak">Kontak</a>
+  <button id="open" aria-label="Buka pencarian">Cari <kbd>Ctrl K</kbd></button>
+</nav>
+
+<main>
+<section id="ringkasan">
+  <div class="status">Open to work, remote atau on-site</div>
+  <h1>Data diubah jadi keputusan bisnis.</h1>
+  <p class="lead">Saya Sigit Dwiantoro, data analyst berlatar Manajemen Ekonomi dan pengalaman di lingkungan manufaktur. Saya fokus pada analisis operasional, keuangan, dan risiko. Semua proyek di bawah bisa Anda coba langsung.</p>
+  <div class="kpis">
+    <div class="kpi"><span data-n="3">0</span><small>proyek unggulan</small></div>
+    <div class="kpi"><span data-n="21">0</span><small>repository GitHub</small></div>
+    <div class="kpi"><span data-n="3">0</span><small>tool utama: Python, SQL, Power BI</small></div>
+    <div class="kpi"><span data-n="3.81" data-d="2">0</span><small>IPK Manajemen Ekonomi</small></div>
+  </div>
+</section>
+
+<section id="proyek">
+  <h2>Proyek interaktif</h2>
+  <div class="bar" role="group" aria-label="Filter tool">
+    <button class="chip" data-t="Semua" aria-pressed="true">Semua</button>
+    <button class="chip" data-t="Python" aria-pressed="false">Python</button>
+    <button class="chip" data-t="SQL" aria-pressed="false">SQL</button>
+    <button class="chip" data-t="Power BI" aria-pressed="false">Power BI</button>
+  </div>
+  <div class="bar" id="tabs" role="tablist" aria-label="Pilih proyek"></div>
+  <div class="box">
+    <h3 id="pt"></h3>
+    <p class="d" id="pd"></p>
+    <div class="ctl" id="ctl"></div>
+    <div class="cv"><canvas id="cv" role="img" aria-label="Grafik proyek"></canvas></div>
+    <div class="ins" id="ins" aria-live="polite"></div>
+    <p class="note">Data di halaman ini adalah data contoh. <a id="pl" href="#" target="_blank" rel="noopener">Lihat analisis lengkap di GitHub</a></p>
+  </div>
+</section>
+
+<section id="skill">
+  <h2>Skill dan cara kerja</h2>
+  <div class="two">
+    <div class="box"><div class="cv"><canvas id="rd" role="img" aria-label="Radar skill"></canvas></div></div>
+    <ul class="box list">
+      <li><b>Analisis</b><br>Python (Pandas, NumPy), SQL, EDA, desain KPI</li>
+      <li><b>Visualisasi</b><br>Power BI untuk dashboard eksekutif, Matplotlib</li>
+      <li><b>Domain</b><br>Penjualan, piutang dan cashflow, siklus aset, operasi manufaktur</li>
+      <li><b>Sedang dipelajari</b><br>Membangun SaaS kecil, dasar cloud AWS dan Azure</li>
+    </ul>
+  </div>
+</section>
+
+<section id="kontak">
+  <h2>Mari berdiskusi</h2>
+  <div class="links">
+    <a href="https://www.linkedin.com/in/sigit-dwiantoro-392872227" target="_blank" rel="noopener">LinkedIn</a>
+    <a href="https://github.com/sigit48" target="_blank" rel="noopener">GitHub</a>
+    <a href="cv.pdf" download>Unduh CV</a>
+  </div>
+</section>
+<footer>Dibuat dengan HTML, CSS, JavaScript, dan Chart.js. Hosting di GitHub Pages.</footer>
+</main>
+
+<dialog id="pal"><input id="q" placeholder="Ketik: python, risk, kontak..." aria-label="Cari"><ul id="res"></ul></dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<script>
+const $=s=>document.querySelector(s),C='#37e6d0',A='#ffb454',D='rgba(55,230,208,.3)';
+Chart.defaults.color='#7b93ab';Chart.defaults.borderColor='#1a2a3d';Chart.defaults.font.family="'Sora',sans-serif";
+let ch,cur;
+const ctl=h=>$('#ctl').innerHTML=h, say=t=>$('#ins').textContent=t;
+function draw(type,labels,ds,ex={}){
+  if(ch)ch.destroy();
+  ch=new Chart($('#cv'),{type,data:{labels,datasets:ds},options:{responsive:true,maintainAspectRatio:false,
+    plugins:{legend:{display:ds.length>1}},...ex}});
+}
+const sum=a=>a.reduce((x,y)=>x+y,0), avg=a=>a.length?sum(a)/a.length:0;
+
+/* ====== DATA CONTOH: ganti dengan data asli dari proyek Anda ====== */
+const P=[
+{id:'coffee',tools:['Python'],title:'Coffee Shop Revenue Optimization',
+ desc:'Analisis penjualan untuk menentukan produk andalan, jam ramai, dan peluang bundling promo.',
+ repo:'https://github.com/sigit48/coffee-shop-sales-analysis',
+ run(){
+  const n=['Latte','Cappuccino','Americano','Croissant','Espresso'],
+  d={Pagi:[5.2,3.1,4.0,2.4,1.9],Siang:[3.8,2.9,2.2,1.1,1.5],Sore:[2.1,1.8,1.0,0.9,1.2]};
+  ctl(`<label>Waktu <select id="f1">${Object.keys(d).map(k=>`<option>${k}</option>`).join('')}</select></label>`);
+  const up=()=>{const k=$('#f1').value,v=d[k],m=v.indexOf(Math.max(...v));
+   draw('bar',n,[{label:'Pendapatan (juta Rp)',data:v,backgroundColor:v.map((_,i)=>i==m?A:D),borderRadius:6}]);
+   say(`${n[m]} menyumbang ${Math.round(v[m]/sum(v)*100)}% pendapatan waktu ${k.toLowerCase()}. Cocok dijadikan produk utama paket bundling.`)};
+  $('#f1').onchange=up;up();}},
+
+{id:'credit',tools:['SQL','Power BI'],title:'Manufacturing Credit Risk & Cashflow Analytics',
+ desc:'Eksposur piutang dan risiko ketergantungan pada pelanggan besar. Geser slider untuk simulasi gagal bayar.',
+ repo:'https://github.com/sigit48/financial-analysis',
+ run(){
+  const n=['PT A','PT B','PT C','PT D','PT E','PT F','PT G'],v=[420,310,190,150,110,80,60];
+  ctl(`<label>Pelanggan terbesar yang telat bayar: <b id="sv">2</b> <input type="range" id="f1" min="1" max="5" value="2"></label>`);
+  const up=()=>{const k=+$('#f1').value;$('#sv').textContent=k;
+   draw('bar',n,[{label:'Piutang (juta Rp)',data:v,backgroundColor:v.map((_,i)=>i<k?A:D),borderRadius:6}]);
+   say(`Jika ${k} pelanggan terbesar telat bayar, ${Math.round(sum(v.slice(0,k))/sum(v)*100)}% dari total piutang (Rp ${sum(v.slice(0,k))} juta) ikut tertahan.`)};
+  $('#f1').oninput=up;up();}},
+
+{id:'strategy',tools:['Python'],title:'Corporate Strategy & Business Analytics',
+ desc:'Hubungan umur aset dengan efisiensi modal (ROA) untuk menilai risiko modernisasi.',
+ repo:'https://github.com/sigit48/corporate-strategy-and-risk-analysis',
+ run(){
+  const pts=[[2,13.1],[4,12.4],[5,11.8],[7,11.2],[9,9.9],[11,9.4],[13,8.1],[15,7.6],[17,6.2],[19,6.8],[22,4.9],[25,4.1],[28,3.2],[31,2.6]];
+  ctl(`<label>Aset dianggap tua jika umur ≥ <b id="sv">15</b> tahun <input type="range" id="f1" min="5" max="25" value="15"></label>`);
+  const up=()=>{const t=+$('#f1').value;$('#sv').textContent=t;
+   const o=pts.filter(p=>p[0]>=t),y=pts.filter(p=>p[0]<t),mp=a=>a.map(p=>({x:p[0],y:p[1]}));
+   draw('scatter',null,[{label:'Aset muda',data:mp(y),backgroundColor:C,pointRadius:6},{label:'Aset tua',data:mp(o),backgroundColor:A,pointRadius:6}],
+    {scales:{x:{title:{display:true,text:'Umur aset (tahun)'}},y:{title:{display:true,text:'ROA (%)'}}}});
+   say(o.length&&y.length?`ROA rata-rata aset tua ${avg(o.map(p=>p[1])).toFixed(1)}% vs aset muda ${avg(y.map(p=>p[1])).toFixed(1)}%. Selisih ini jadi dasar prioritas modernisasi.`:'Ubah batas umur agar kedua kelompok punya data.')};
+  $('#f1').oninput=up;up();}},
+
+{id:'ops',tools:['SQL'],title:'Manufacturing Operations Risk Analytics',
+ desc:'Keterlambatan produksi per lini, dianalisis dengan PostgreSQL untuk melihat eksposur pendapatan.',
+ repo:'https://github.com/sigit48/manufacturing-operations-risk-analytics',
+ run(){
+  const m=['Jan','Feb','Mar','Apr','Mei','Jun'],d={'Lini A':[12,9,14,8,7,6],'Lini B':[20,24,31,28,35,40],'Lini C':[5,6,4,7,5,6]};
+  ctl(`<label>Lini produksi <select id="f1">${Object.keys(d).map(k=>`<option>${k}</option>`).join('')}</select></label>`);
+  const up=()=>{const k=$('#f1').value,v=d[k],i=v.indexOf(Math.max(...v));
+   draw('line',m,[{label:'Jam keterlambatan',data:v,borderColor:C,backgroundColor:D,tension:.3,fill:true,pointBackgroundColor:v.map((_,j)=>j==i?A:C),pointRadius:v.map((_,j)=>j==i?7:4)}]);
+   say(`${k}: keterlambatan tertinggi bulan ${m[i]} (${v[i]} jam), ${v[5]>v[0]?'tren naik sejak Januari, perlu perhatian.':'tren stabil atau membaik.'}`)};
+  $('#f1').onchange=up;up();}}
+];
+
+/* ====== Tab dan filter proyek ====== */
+let tool='Semua';
+function tabs(){
+  const vis=P.filter(p=>tool=='Semua'||p.tools.includes(tool));
+  $('#tabs').innerHTML=vis.map(p=>`<button class="tab" role="tab" data-id="${p.id}" aria-selected="${p.id==cur}">${p.title.split(' ').slice(0,2).join(' ')}</button>`).join('');
+  document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>mount(b.dataset.id));
+  if(!vis.some(p=>p.id==cur))mount(vis[0].id);
+}
+function mount(id){
+  cur=id;const p=P.find(x=>x.id==id);
+  $('#pt').textContent=p.title;$('#pd').textContent=p.desc;$('#pl').href=p.repo;
+  document.querySelectorAll('.tab').forEach(b=>b.setAttribute('aria-selected',b.dataset.id==id));
+  p.run();
+}
+document.querySelectorAll('.chip').forEach(b=>b.onclick=()=>{
+  tool=b.dataset.t;document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x==b));tabs();});
+mount(P[0].id);tabs();
+
+/* ====== Radar skill (sesuaikan level dengan jujur) ====== */
+new Chart($('#rd'),{type:'radar',data:{labels:['Python','SQL','Power BI','Statistik','Storytelling bisnis','Finance & risk'],
+ datasets:[{data:[70,70,75,60,80,65],borderColor:C,backgroundColor:D,pointBackgroundColor:C}]},
+ options:{responsive:true,maintainAspectRatio:false,plugins:{legend:{display:false}},
+ scales:{r:{min:0,max:100,ticks:{display:false},grid:{color:'#1a2a3d'},angleLines:{color:'#1a2a3d'}}}}});
+
+/* ====== KPI count-up ====== */
+const rm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+document.querySelectorAll('[data-n]').forEach(e=>{
+  const t=+e.dataset.n,d=+(e.dataset.d||0),t0=performance.now();
+  const f=now=>{const k=rm?1:Math.min((now-t0)/1200,1);e.textContent=(t*k).toFixed(d);if(k<1)requestAnimationFrame(f)};
+  requestAnimationFrame(f);
+});
+
+/* ====== Command palette (Ctrl/Cmd + K) ====== */
+const go=id=>document.getElementById(id).scrollIntoView();
+const items=[...P.map(p=>({t:'Proyek: '+p.title,k:p.tools.join(' ')+' '+p.title,f:()=>{go('proyek');tool='Semua';document.querySelectorAll('.chip').forEach(x=>x.setAttribute('aria-pressed',x.dataset.t=='Semua'));tabs();mount(p.id)}})),
+ {t:'Ringkasan',k:'about profil',f:()=>go('ringkasan')},{t:'Skill',k:'python sql power bi',f:()=>go('skill')},{t:'Kontak',k:'linkedin github cv email',f:()=>go('kontak')}];
+const pal=$('#pal'),q=$('#q'),res=$('#res');let cur2=[];
+function list(){const s=q.value.toLowerCase();cur2=items.filter(i=>(i.t+i.k).toLowerCase().includes(s));
+  res.innerHTML=cur2.map((i,x)=>`<li data-i="${x}">${i.t}</li>`).join('')||'<li>Tidak ada hasil. Coba kata lain.</li>';
+  res.querySelectorAll('li[data-i]').forEach(l=>l.onclick=()=>run(+l.dataset.i));}
+const run=i=>{pal.close();cur2[i]&&cur2[i].f()};
+const openP=()=>{q.value='';list();pal.showModal();q.focus()};
+$('#open').onclick=openP;q.oninput=list;
+q.onkeydown=e=>{if(e.key=='Enter')run(0)};
+pal.onclick=e=>{if(e.target==pal)pal.close()};
+addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key.toLowerCase()=='k'){e.preventDefault();openP()}});
+</script>
+</body>
+</html>
